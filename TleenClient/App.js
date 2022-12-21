@@ -8,9 +8,10 @@
 
 import React from 'react';
 import type {Node} from 'react';
-import {SafeAreaView, StatusBar, Text, useColorScheme} from 'react-native';
+import {StatusBar} from 'react-native';
 
-import Icon from 'react-native-vector-icons/AntDesign';
+import HomeScreen from './src/screens/HomeScreen';
+import DestinationSearch from './src/screens/DestinationSearch';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -19,6 +20,8 @@ const App: () => Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
+      {/* <HomeScreen /> */}
+      <DestinationSearch />
     </>
   );
 };
