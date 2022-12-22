@@ -30,7 +30,7 @@ const RouteMap = () => {
         destination={destination}
         strokeWidth={4}
         strokeColor="green"
-        apikey="AIzaSyAz48wFGKcLYPQIhaLTX_Vh8FVSzUUBYHE"
+        apikey=""
       />
       {/* Markers */}
       <Marker coordinate={origin} title={'Origin'} />
