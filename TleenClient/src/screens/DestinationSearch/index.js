@@ -26,7 +26,7 @@ const DestinationSearch = () => {
           }}
           fetchDetails
           query={{
-            key: 'AIzaSyAz48wFGKcLYPQIhaLTX_Vh8FVSzUUBYHE',
+            key: '',
             language: 'en',
           }}
           enablePoweredByContainer={false}
@@ -51,7 +51,7 @@ const DestinationSearch = () => {
           }}
           fetchDetails
           query={{
-            key: 'AIzaSyAz48wFGKcLYPQIhaLTX_Vh8FVSzUUBYHE',
+            key: '',
             language: 'en',
           }}
           enablePoweredByContainer={false}
