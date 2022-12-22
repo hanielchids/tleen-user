@@ -1,30 +1,30 @@
-// export default [
-//   {
-//     id: '0',
-//     type: 'UberX',
-//     latitude: 28.450627,
-//     longitude: -16.263045,
-//     heading: 130,
-//   },
-//   {
-//     id: '1',
-//     type: 'Comfort',
-//     latitude: 28.456312,
-//     longitude: -16.252929,
-//     heading: 0,
-//   },
-//   {
-//     id: '2',
-//     type: 'UberXL',
-//     latitude: 28.456208,
-//     longitude: -16.259098,
-//     heading: 250,
-//   },
-//   {
-//     id: '3',
-//     type: 'Comfort',
-//     latitude: 28.454812,
-//     longitude: -16.258658,
-//     heading: 30,
-//   },
-// ];
+export default [
+  {
+    id: 0,
+    type: 'TLEEN',
+    latitude: '-26.1093444',
+    longitude: '28.0559063',
+    heading: 130,
+  },
+  {
+    id: 1,
+    type: 'TLEEN XTRA',
+    latitude: ' -26.1102545',
+    longitude: '28.0509087',
+    heading: 0,
+  },
+  {
+    id: 2,
+    type: 'TLEEN GOLD',
+    latitude: '-26.107567',
+    longitude: '28.056702',
+    heading: 250,
+  },
+  {
+    id: 3,
+    type: 'TLEEN GOLD',
+    latitude: '-26.1081049',
+    longitude: '28.0540901',
+    heading: 30,
+  },
+];
