@@ -1,13 +1,13 @@
 import {View, Text} from 'react-native';
 import React from 'react';
-import HomeMap from '../../components/HomeMap';
 import RideOptions from '../../components/RideOptions';
+import RouteMap from '../../components/RouteMap';
 
 const SearchResults = () => {
   return (
     <View style={{display: 'flex'}}>
       <View style={{height: '50%'}}>
-        <HomeMap />
+        <RouteMap />
       </View>
 
       <View style={{height: '50%'}}>
