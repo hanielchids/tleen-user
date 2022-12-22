@@ -7,13 +7,13 @@ const RideOptionsRow = props => {
   const {type} = props;
 
   const getImageName = () => {
-    if (type.type === 'UberX') {
+    if (type.type === 'TLEEN') {
       return require('../../assets/UberX.jpeg');
     }
-    if (type.type === 'Comfort') {
+    if (type.type === 'TLEEN XTRA') {
       return require('../../assets/Comfort.jpeg');
     }
-    if (type.type === 'UberXL') {
+    if (type.type === 'TLEEN GOLD') {
       return require('../../assets/UberXL.jpeg');
     }
   };
