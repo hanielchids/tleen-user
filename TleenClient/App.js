@@ -5,6 +5,7 @@
  * @format
  * @flow strict-local
  */
+import {enableLatestRenderer} from 'react-native-maps';
 
 import React from 'react';
 import type {Node} from 'react';
@@ -16,6 +17,9 @@ import SearchResults from './src/screens/SearchResults';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
+
+// Google maps stuff
+enableLatestRenderer();
 
 const App: () => Node = () => {
   return (
