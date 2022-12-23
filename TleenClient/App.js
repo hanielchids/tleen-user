@@ -5,15 +5,15 @@
  * @format
  * @flow strict-local
  */
+// import 'react-native-gesture-handler';
 import {enableLatestRenderer} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import React, {useEffect} from 'react';
 import type {Node} from 'react';
 import {StatusBar, PermissionsAndroid, Platform} from 'react-native';
 
-import HomeScreen from './src/screens/HomeScreen';
-import DestinationSearch from './src/screens/DestinationSearch';
-import SearchResults from './src/screens/SearchResults';
+// Navigation
+import Router from './src/navigation/Root';
 
 // Geolocation require statement for backwards compatibility
 navigator.geolocation = require('@react-native-community/geolocation');
@@ -61,9 +61,7 @@ const App: () => Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      <HomeScreen />
-      {/* <DestinationSearch /> */}
-      {/* <SearchResults /> */}
+      <Router />
     </>
   );
 };
