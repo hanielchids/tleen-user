@@ -7,11 +7,11 @@ import HomeSearch from '../../components/HomeSearch';
 const HomeScreen = () => {
   return (
     <View>
-      <View style={{height: '50%'}}>
+      <View style={{height: '60%'}}>
         <HomeMap />
       </View>
 
-      <View style={{height: '50%'}}>
+      <View style={{height: '40%'}}>
         {/* ToolTip */}
         <Tooltip />
         {/* Bottom Component */}
