@@ -61,8 +61,8 @@ const App: () => Node = () => {
   return (
     <>
       <StatusBar barStyle="dark-content" />
-      {/* <HomeScreen /> */}
-      <DestinationSearch />
+      <HomeScreen />
+      {/* <DestinationSearch /> */}
       {/* <SearchResults /> */}
     </>
   );
