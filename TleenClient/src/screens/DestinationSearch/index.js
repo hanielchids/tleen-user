@@ -8,6 +8,15 @@ const DestinationSearch = () => {
   const [originPlace, setOriginPlace] = useState('');
   const [destinationPlace, setDestinationPlace] = useState('');
 
+  const homePlace = {
+    description: 'Home',
+    geometry: {location: {lat: 48.8152937, lng: 2.4597668}},
+  };
+  const workPlace = {
+    description: 'Work',
+    geometry: {location: {lat: 48.8496818, lng: 2.2940881}},
+  };
+
   useEffect(() => {
     console.warn('useEffect is called');
     if (originPlace && destinationPlace) {
@@ -30,6 +39,8 @@ const DestinationSearch = () => {
             language: 'en',
           }}
           enablePoweredByContainer={false}
+          currentLocation={true}
+          currentLocationLabel="Current location"
           suppressDefaultStyles
           styles={{
             textInput: {
@@ -42,6 +53,8 @@ const DestinationSearch = () => {
             separator: styles.separator,
           }}
           renderRow={data => <PlaceRow data={data} />}
+          renderDescription={data => data.description || data.vicinity}
+          predefinedPlaces={[homePlace, workPlace]}
         />
         <GooglePlacesAutocomplete
           placeholder="Where to?"
