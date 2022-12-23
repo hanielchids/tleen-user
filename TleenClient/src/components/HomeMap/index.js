@@ -19,6 +19,7 @@ const HomeMap = () => {
   return (
     <MapView
       provider={PROVIDER_GOOGLE}
+      showsUserLocation={true}
       style={{height: '100%', width: '100%'}}
       region={{
         latitude: -26.107567, // change it to origin.location.lat
@@ -32,7 +33,16 @@ const HomeMap = () => {
           coordinate={{latitude: car.latitude, longitude: car.longitude}}>
           <Image
             source={getImageName(car.type)}
-            style={{width: 50, height: 50, resizeMode: 'contain'}}
+            style={{
+              width: 50,
+              height: 50,
+              resizeMode: 'contain',
+              transform: [
+                {
+                  rotate: `${car.heading}deg`,
+                },
+              ],
+            }}
           />
         </Marker>
       ))}
