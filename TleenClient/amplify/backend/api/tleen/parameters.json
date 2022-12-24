@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "tleen",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authtleen2559b00a2559b00a",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

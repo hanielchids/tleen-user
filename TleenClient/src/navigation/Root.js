@@ -1,25 +1,90 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import HomeScreen from '../screens/HomeScreen';
-import DestinationSearch from '../screens/DestinationSearch';
-import SearchResults from '../screens/SearchResults';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import HomeNavigator from './Home';
 
-const Stack = createNativeStackNavigator();
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {Text, View} from 'react-native';
+import CustomDrawer from './CustomDrawer';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+
+const Drawer = createDrawerNavigator();
+
+const DummyScreen = props => (
+  <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+    <Text>{props.name}</Text>
+  </View>
+);
 
 const RootNavigator = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{headerShown: false}}
-        initialRouteName="Home">
-        <Stack.Screen name={'Home'} component={HomeScreen} />
-        <Stack.Screen
-          name={'DestinationSearch'}
-          component={DestinationSearch}
+      <Drawer.Navigator
+        screenOptions={{
+          headerShown: false,
+          drawerStyle: {
+            width: '100%',
+          },
+          drawerActiveTintColor: '#9ce3a2',
+          drawerLabelStyle: {
+            color: '#fff',
+            fontSize: 20,
+            fontWeight: '400',
+          },
+        }}
+        drawerContent={props => <CustomDrawer {...props} />}>
+        <Drawer.Screen
+          name="Home"
+          options={{
+            drawerIcon: () => <AntDesign name="home" color="#fff" size={16} />,
+          }}
+          component={HomeNavigator}
         />
-        <Stack.Screen name={'SearchResults'} component={SearchResults} />
-      </Stack.Navigator>
+        <Drawer.Screen
+          name="Past Orders"
+          options={{
+            drawerIcon: () => (
+              <AntDesign name="profile" color="#fff" size={16} />
+            ),
+          }}>
+          {() => <DummyScreen name={'Past Orders'} />}
+        </Drawer.Screen>
+        <Drawer.Screen
+          name="Wallet"
+          options={{
+            drawerIcon: () => (
+              <AntDesign name="wallet" color="#fff" size={16} />
+            ),
+          }}>
+          {() => <DummyScreen name={'Wallet'} />}
+        </Drawer.Screen>
+        <Drawer.Screen
+          name="Promotions"
+          options={{
+            drawerIcon: () => (
+              <AntDesign name="barchart" color="#fff" size={16} />
+            ),
+          }}>
+          {() => <DummyScreen name={'Promotions'} />}
+        </Drawer.Screen>
+        <Drawer.Screen
+          name="Support"
+          options={{
+            drawerIcon: () => (
+              <AntDesign name="customerservice" color="#fff" size={16} />
+            ),
+          }}>
+          {() => <DummyScreen name={'Support'} />}
+        </Drawer.Screen>
+        <Drawer.Screen
+          name="About"
+          options={{
+            drawerIcon: () => (
+              <AntDesign name="exclamationcircleo" color="#fff" size={16} />
+            ),
+          }}>
+          {() => <DummyScreen name={'About'} />}
+        </Drawer.Screen>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };

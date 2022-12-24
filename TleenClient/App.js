@@ -5,18 +5,25 @@
  * @format
  * @flow strict-local
  */
-// import 'react-native-gesture-handler';
+import 'react-native-gesture-handler';
+
 import {enableLatestRenderer} from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 import React, {useEffect} from 'react';
 import type {Node} from 'react';
 import {StatusBar, PermissionsAndroid, Platform} from 'react-native';
 
+import {withAuthenticator} from 'aws-amplify-react-native';
+
 // Navigation
 import Router from './src/navigation/Root';
 
 // Geolocation require statement for backwards compatibility
 navigator.geolocation = require('@react-native-community/geolocation');
+
+import {Amplify} from 'aws-amplify';
+import awsExports from './src/aws-exports';
+Amplify.configure(awsExports);
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -66,4 +73,4 @@ const App: () => Node = () => {
   );
 };
 
-export default App;
+export default withAuthenticator(App);

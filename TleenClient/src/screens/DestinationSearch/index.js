@@ -40,7 +40,7 @@ const DestinationSearch = () => {
           }}
           fetchDetails
           query={{
-            key: '',
+            key: 'AIzaSyAz48wFGKcLYPQIhaLTX_Vh8FVSzUUBYHE',
             language: 'en',
           }}
           enablePoweredByContainer={false}
@@ -69,7 +69,7 @@ const DestinationSearch = () => {
           }}
           fetchDetails
           query={{
-            key: '',
+            key: 'AIzaSyAz48wFGKcLYPQIhaLTX_Vh8FVSzUUBYHE',
             language: 'en',
           }}
           enablePoweredByContainer={false}
