@@ -4,17 +4,17 @@ import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 import cars from '../../assets/data/cars';
 import MapViewDirections from 'react-native-maps-directions';
 
-const RouteMap = () => {
-  const origin = {
-    latitude: -26.107567,
-    longitude: 28.056702,
+const RouteMap = ({origin, destination}) => {
+  const originLoc = {
+    latitude: origin.details.geometry.location.lat,
+    longitude: origin.details.geometry.location.lng,
   };
 
-  const destination = {
-    latitude: -26.1018398,
-    longitude: 28.0595678,
+  const destinationLoc = {
+    latitude: destination.details.geometry.location.lat,
+    longitude: destination.details.geometry.location.lng,
   };
-  // Will replace with real data
+
   return (
     <MapView
       provider={PROVIDER_GOOGLE}
@@ -22,12 +22,12 @@ const RouteMap = () => {
       region={{
         latitude: -26.107567, // change it to origin.location.lat
         longitude: 28.056702, // change it to origin.location.lng
-        latitudeDelta: 0.005,
-        longitudeDelta: 0.005,
+        latitudeDelta: 0.0222,
+        longitudeDelta: 0.0121,
       }}>
       <MapViewDirections
-        origin={origin}
-        destination={destination}
+        origin={originLoc}
+        destination={destinationLoc}
         strokeWidth={4}
         strokeColor="green"
         apikey="AIzaSyAz48wFGKcLYPQIhaLTX_Vh8FVSzUUBYHE"
