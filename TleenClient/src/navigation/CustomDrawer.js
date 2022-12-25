@@ -6,8 +6,11 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 // import {useNavigation} from '@react-navigation/native';
+
+import {Auth} from 'aws-amplify';
 
 const CustomDrawer = props => {
   //   const navigation = useNavigation();
@@ -106,6 +109,22 @@ const CustomDrawer = props => {
           source={require('../assets/sidebarImage.png')}
         />
       </View>
+
+      <Pressable
+        onPress={() => {
+          Auth.signOut();
+        }}>
+        <Text
+          style={{
+            color: 'white',
+            paddingLeft: 20,
+            marginTop: 100,
+            padding: 5,
+            fontSize: 20,
+          }}>
+          <Entypo name="log-out" color="white" size={20} /> Log out
+        </Text>
+      </Pressable>
     </DrawerContentScrollView>
   );
 };
