@@ -3,7 +3,7 @@ type User @model {
   username: String!
   email: String
 
-  orders: [Order] @connection(keyName: "byUser", fields: ["id"])
+  orders: [Order] @hasMany
 }
 
 type Car @model {
@@ -13,18 +13,16 @@ type Car @model {
   longitude: Float
   heading: Float
 
-  orders: [Order] @connection(keyName: "byCar", fields: ["id"])
+  orders: [Order] @hasMany
 }
 
-type Order
-  @model
-  @key(name: "byUser", fields: ["userId"])
-  @key(name: "byCar", fields: ["carId", "createdAt"]) {
+type Order @model {
   id: ID!
+  createdAt: String!
 
-  userId: String!
-  user: User @connection(fields: ["userId"])
+  userId: ID!
+  user: User @hasOne(fields: ["userId"])
 
   carId: ID!
-  car: Car @connection(fields: ["carId"])
+  car: Car @hasOne(fields: ["carId"])
 }
