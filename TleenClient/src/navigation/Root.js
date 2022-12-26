@@ -6,6 +6,8 @@ import {createDrawerNavigator} from '@react-navigation/drawer';
 import {Text, View} from 'react-native';
 import CustomDrawer from './CustomDrawer';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import About from '../screens/About';
+import Promotions from '../screens/Promotions';
 
 const Drawer = createDrawerNavigator();
 
@@ -39,6 +41,7 @@ const RootNavigator = () => {
           }}
           component={HomeNavigator}
         />
+
         <Drawer.Screen
           name="Past Orders"
           options={{
@@ -63,9 +66,9 @@ const RootNavigator = () => {
             drawerIcon: () => (
               <AntDesign name="barchart" color="#fff" size={16} />
             ),
-          }}>
-          {() => <DummyScreen name={'Promotions'} />}
-        </Drawer.Screen>
+          }}
+          component={Promotions}
+        />
         <Drawer.Screen
           name="Support"
           options={{
@@ -81,9 +84,11 @@ const RootNavigator = () => {
             drawerIcon: () => (
               <AntDesign name="exclamationcircleo" color="#fff" size={16} />
             ),
-          }}>
-          {() => <DummyScreen name={'About'} />}
-        </Drawer.Screen>
+          }}
+          component={About}
+        />
+        {/* {() => <DummyScreen name={'About'} />} */}
+        {/* </Drawer.Screen> */}
       </Drawer.Navigator>
     </NavigationContainer>
   );
