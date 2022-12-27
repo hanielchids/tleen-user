@@ -19,7 +19,7 @@
       "function": {
         "tleen2559b00a2559b00aPostConfirmation": {
           "deploymentBucketName": "amplify-tleen-dev-215645-deployment",
-          "s3Key": "amplify-builds/tleen2559b00a2559b00aPostConfirmation-3739346158362f766f30-build.zip"
+          "s3Key": "amplify-builds/tleen2559b00a2559b00aPostConfirmation-4d764f686a514e773263-build.zip"
         }
       },
       "api": {
