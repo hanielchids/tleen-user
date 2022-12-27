@@ -1,4 +1,4 @@
-type User @model {
+type User @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
   username: String!
   email: String
@@ -6,7 +6,7 @@ type User @model {
   orders: [Order] @hasMany
 }
 
-type Car @model {
+type Car @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
   type: String!
   latitude: Float
@@ -16,9 +16,18 @@ type Car @model {
   orders: [Order] @hasMany
 }
 
-type Order @model {
+type Order @model @auth(rules: [{allow: public}, {allow: owner}]) {
   id: ID!
   createdAt: String!
+
+  type: String!
+  status: String
+
+  originLatitude: Float!
+  originLongitude: Float!
+
+  destLatitude: Float!
+  destLongitude: Float!
 
   userId: ID!
   user: User @hasOne(fields: ["userId"])
