@@ -23,8 +23,8 @@ export const createUser = /* GraphQL */ `
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
           owner
         }
         nextToken
@@ -57,8 +57,8 @@ export const updateUser = /* GraphQL */ `
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
           owner
         }
         nextToken
@@ -91,8 +91,8 @@ export const deleteUser = /* GraphQL */ `
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
           owner
         }
         nextToken
@@ -127,8 +127,8 @@ export const createCar = /* GraphQL */ `
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
           owner
         }
         nextToken
@@ -163,8 +163,8 @@ export const updateCar = /* GraphQL */ `
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
           owner
         }
         nextToken
@@ -199,8 +199,8 @@ export const deleteCar = /* GraphQL */ `
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
           owner
         }
         nextToken
@@ -252,8 +252,8 @@ export const createOrder = /* GraphQL */ `
         owner
       }
       updatedAt
-      userOrdersId
-      carOrdersId
+      orderUserId
+      orderCarId
       owner
     }
   }
@@ -299,8 +299,8 @@ export const updateOrder = /* GraphQL */ `
         owner
       }
       updatedAt
-      userOrdersId
-      carOrdersId
+      orderUserId
+      orderCarId
       owner
     }
   }
@@ -346,8 +346,8 @@ export const deleteOrder = /* GraphQL */ `
         owner
       }
       updatedAt
-      userOrdersId
-      carOrdersId
+      orderUserId
+      orderCarId
       owner
     }
   }
