@@ -63,7 +63,16 @@
               "userPoolId": "authtleen2559b00a2559b00a"
             }
           },
-          "additionalAuthenticationProviders": []
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 30,
+                "apiKeyExpirationDate": "2023-01-26T08:02:04.341Z",
+                "description": ""
+              }
+            }
+          ]
         }
       }
     }

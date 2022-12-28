@@ -1,10 +1,10 @@
-import {View, Image, Text} from 'react-native';
+import {View, Image, Text, Pressable} from 'react-native';
 import React from 'react';
 import styles from './styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const RideOptionsRow = props => {
-  const {type} = props;
+  const {type, onPress, isSelected} = props;
 
   const getImageName = () => {
     if (type.type === 'TLEEN') {
@@ -19,7 +19,12 @@ const RideOptionsRow = props => {
   };
 
   return (
-    <View style={styles.container}>
+    <Pressable
+      onPress={onPress}
+      style={[
+        styles.container,
+        {backgroundColor: isSelected ? '#efefef' : '#fff'},
+      ]}>
       <Image style={styles.image} source={getImageName()} />
 
       <View style={styles.middleContainer}>
@@ -34,7 +39,7 @@ const RideOptionsRow = props => {
         <Ionicons name="pricetag" color="#42d742" size={18} />
         <Text style={styles.price}>R{type.price}</Text>
       </View>
-    </View>
+    </Pressable>
   );
 };
 

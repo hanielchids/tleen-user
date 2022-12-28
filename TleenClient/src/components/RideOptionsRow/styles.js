@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 20,
+    backgroundColor: '#fff',
   },
   image: {
     height: 70,

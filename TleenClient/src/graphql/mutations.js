@@ -14,16 +14,24 @@ export const createUser = /* GraphQL */ `
         items {
           id
           createdAt
+          type
+          status
+          originLatitude
+          originLongitude
+          destLatitude
+          destLongitude
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -40,16 +48,24 @@ export const updateUser = /* GraphQL */ `
         items {
           id
           createdAt
+          type
+          status
+          originLatitude
+          originLongitude
+          destLatitude
+          destLongitude
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -66,16 +82,24 @@ export const deleteUser = /* GraphQL */ `
         items {
           id
           createdAt
+          type
+          status
+          originLatitude
+          originLongitude
+          destLatitude
+          destLongitude
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -94,16 +118,24 @@ export const createCar = /* GraphQL */ `
         items {
           id
           createdAt
+          type
+          status
+          originLatitude
+          originLongitude
+          destLatitude
+          destLongitude
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -122,16 +154,24 @@ export const updateCar = /* GraphQL */ `
         items {
           id
           createdAt
+          type
+          status
+          originLatitude
+          originLongitude
+          destLatitude
+          destLongitude
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -150,16 +190,24 @@ export const deleteCar = /* GraphQL */ `
         items {
           id
           createdAt
+          type
+          status
+          originLatitude
+          originLongitude
+          destLatitude
+          destLongitude
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
+          owner
         }
         nextToken
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -171,6 +219,12 @@ export const createOrder = /* GraphQL */ `
     createOrder(input: $input, condition: $condition) {
       id
       createdAt
+      type
+      status
+      originLatitude
+      originLongitude
+      destLatitude
+      destLongitude
       userId
       user {
         id
@@ -181,6 +235,7 @@ export const createOrder = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       carId
       car {
@@ -194,10 +249,12 @@ export const createOrder = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       updatedAt
-      userOrdersId
-      carOrdersId
+      orderUserId
+      orderCarId
+      owner
     }
   }
 `;
@@ -209,6 +266,12 @@ export const updateOrder = /* GraphQL */ `
     updateOrder(input: $input, condition: $condition) {
       id
       createdAt
+      type
+      status
+      originLatitude
+      originLongitude
+      destLatitude
+      destLongitude
       userId
       user {
         id
@@ -219,6 +282,7 @@ export const updateOrder = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       carId
       car {
@@ -232,10 +296,12 @@ export const updateOrder = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       updatedAt
-      userOrdersId
-      carOrdersId
+      orderUserId
+      orderCarId
+      owner
     }
   }
 `;
@@ -247,6 +313,12 @@ export const deleteOrder = /* GraphQL */ `
     deleteOrder(input: $input, condition: $condition) {
       id
       createdAt
+      type
+      status
+      originLatitude
+      originLongitude
+      destLatitude
+      destLongitude
       userId
       user {
         id
@@ -257,6 +329,7 @@ export const deleteOrder = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       carId
       car {
@@ -270,10 +343,12 @@ export const deleteOrder = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       updatedAt
-      userOrdersId
-      carOrdersId
+      orderUserId
+      orderCarId
+      owner
     }
   }
 `;
