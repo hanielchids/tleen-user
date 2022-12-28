@@ -20,8 +20,8 @@ export const getUser = /* GraphQL */ `
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
           owner
         }
         nextToken
@@ -75,8 +75,8 @@ export const getCar = /* GraphQL */ `
           userId
           carId
           updatedAt
-          userOrdersId
-          carOrdersId
+          orderUserId
+          orderCarId
           owner
         }
         nextToken
@@ -149,8 +149,8 @@ export const getOrder = /* GraphQL */ `
         owner
       }
       updatedAt
-      userOrdersId
-      carOrdersId
+      orderUserId
+      orderCarId
       owner
     }
   }
@@ -192,8 +192,8 @@ export const listOrders = /* GraphQL */ `
           owner
         }
         updatedAt
-        userOrdersId
-        carOrdersId
+        orderUserId
+        orderCarId
         owner
       }
       nextToken
