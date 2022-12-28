@@ -13,7 +13,9 @@ import React, {useEffect} from 'react';
 import type {Node} from 'react';
 import {StatusBar, PermissionsAndroid, Platform} from 'react-native';
 
-import {withAuthenticator} from 'aws-amplify-react-native';
+// import {withAuthenticator} from 'aws-amplify-react-native';
+
+import {withAuthenticator} from '@aws-amplify/ui-react-native';
 
 // Navigation
 import Router from './src/navigation/Root';
