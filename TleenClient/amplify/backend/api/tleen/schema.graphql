@@ -3,7 +3,7 @@ type User @model @auth(rules: [{allow: public}, {allow: owner}]) {
   username: String!
   email: String
 
-  orders: [Order] @hasMany
+  orders: [Order] @hasMany(indexName: "byUser", fields: ["id"])
 }
 
 type Car @model @auth(rules: [{allow: public}, {allow: owner}]) {
@@ -13,7 +13,7 @@ type Car @model @auth(rules: [{allow: public}, {allow: owner}]) {
   longitude: Float
   heading: Float
 
-  orders: [Order] @hasMany
+  orders: [Order] @hasMany(indexName: "byCar", fields: ["id"])
 }
 
 type Order @model @auth(rules: [{allow: public}, {allow: owner}]) {
@@ -29,9 +29,9 @@ type Order @model @auth(rules: [{allow: public}, {allow: owner}]) {
   destLatitude: Float!
   destLongitude: Float!
 
-  userId: ID!
-  user: User @hasOne(fields: ["userId"])
+  userId: ID! @index(name: "byUser")
+  user: User @hasOne
 
-  carId: ID!
-  car: Car @hasOne(fields: ["carId"])
+  carId: ID! @index(name: "byCar")
+  car: Car @hasOne
 }
