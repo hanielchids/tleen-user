@@ -4,48 +4,52 @@ const styles = StyleSheet.create({
   headingBox: {
     padding: 5,
     paddingBottom: 0,
-    marginTop: -10,
+    flexDirection: 'row',
+    marginBottom: 30,
   },
   backButton: {
     position: 'absolute',
-    top: 3,
     zIndex: 50,
-    left: -5,
-    marginTop: 1,
-    padding: 3,
     borderRadius: 50,
+    padding: 3,
+    marginTop: 8,
+    marginLeft: 8,
   },
   heading: {
     textAlign: 'center',
-    fontWeight: 'normal',
-    color: 'blue', //Will change tailwind-sky-900
+    fontWeight: 'bold',
+    color: '#0c4a6e',
     padding: 7,
-    fontSize: 24,
+    fontSize: 20,
+    lineHeight: 22,
+    marginLeft: 50,
+    marginBottom: 15,
   },
   subtitles: {
     paddingLeft: 0,
     marginLeft: 5,
     textAlign: 'center',
-    color: 'gray', //will change to tailwind-gray-400
-    fontSize: 15,
+    marginLeft: 30,
+    color: '#9ca3af',
+    fontSize: 13,
   },
   lineView: {
-    backgroundColor: 'gray', //bg-gray-300
+    backgroundColor: '#cbd5e1',
     height: 0.5,
   },
   pressableRow: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 20,
+    padding: 25,
   },
   firstFlex: {
     alignContent: 'flex-start',
   },
   typeText: {
     marginLeft: 2,
-    fontWeight: '200',
-    color: 'gray', //text-gray-700
-    fontSize: 24,
+    fontWeight: '300',
+    color: '#374151',
+    fontSize: 18,
   },
 });
 
