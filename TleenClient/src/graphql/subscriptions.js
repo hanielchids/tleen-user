@@ -23,8 +23,6 @@ export const onCreateUser = /* GraphQL */ `
           userId
           carId
           updatedAt
-          orderUserId
-          orderCarId
           owner
         }
         nextToken
@@ -57,8 +55,6 @@ export const onUpdateUser = /* GraphQL */ `
           userId
           carId
           updatedAt
-          orderUserId
-          orderCarId
           owner
         }
         nextToken
@@ -91,116 +87,6 @@ export const onDeleteUser = /* GraphQL */ `
           userId
           carId
           updatedAt
-          orderUserId
-          orderCarId
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onCreateCar = /* GraphQL */ `
-  subscription OnCreateCar(
-    $filter: ModelSubscriptionCarFilterInput
-    $owner: String
-  ) {
-    onCreateCar(filter: $filter, owner: $owner) {
-      id
-      type
-      latitude
-      longitude
-      heading
-      orders {
-        items {
-          id
-          createdAt
-          type
-          status
-          originLatitude
-          originLongitude
-          destLatitude
-          destLongitude
-          userId
-          carId
-          updatedAt
-          orderUserId
-          orderCarId
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onUpdateCar = /* GraphQL */ `
-  subscription OnUpdateCar(
-    $filter: ModelSubscriptionCarFilterInput
-    $owner: String
-  ) {
-    onUpdateCar(filter: $filter, owner: $owner) {
-      id
-      type
-      latitude
-      longitude
-      heading
-      orders {
-        items {
-          id
-          createdAt
-          type
-          status
-          originLatitude
-          originLongitude
-          destLatitude
-          destLongitude
-          userId
-          carId
-          updatedAt
-          orderUserId
-          orderCarId
-          owner
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onDeleteCar = /* GraphQL */ `
-  subscription OnDeleteCar(
-    $filter: ModelSubscriptionCarFilterInput
-    $owner: String
-  ) {
-    onDeleteCar(filter: $filter, owner: $owner) {
-      id
-      type
-      latitude
-      longitude
-      heading
-      orders {
-        items {
-          id
-          createdAt
-          type
-          status
-          originLatitude
-          originLongitude
-          destLatitude
-          destLongitude
-          userId
-          carId
-          updatedAt
-          orderUserId
-          orderCarId
           owner
         }
         nextToken
@@ -252,8 +138,6 @@ export const onCreateOrder = /* GraphQL */ `
         owner
       }
       updatedAt
-      orderUserId
-      orderCarId
       owner
     }
   }
@@ -299,8 +183,6 @@ export const onUpdateOrder = /* GraphQL */ `
         owner
       }
       updatedAt
-      orderUserId
-      orderCarId
       owner
     }
   }
@@ -346,8 +228,108 @@ export const onDeleteOrder = /* GraphQL */ `
         owner
       }
       updatedAt
-      orderUserId
-      orderCarId
+      owner
+    }
+  }
+`;
+export const onCreateCar = /* GraphQL */ `
+  subscription OnCreateCar(
+    $filter: ModelSubscriptionCarFilterInput
+    $owner: String
+  ) {
+    onCreateCar(filter: $filter, owner: $owner) {
+      id
+      type
+      latitude
+      longitude
+      heading
+      orders {
+        items {
+          id
+          createdAt
+          type
+          status
+          originLatitude
+          originLongitude
+          destLatitude
+          destLongitude
+          userId
+          carId
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateCar = /* GraphQL */ `
+  subscription OnUpdateCar(
+    $filter: ModelSubscriptionCarFilterInput
+    $owner: String
+  ) {
+    onUpdateCar(filter: $filter, owner: $owner) {
+      id
+      type
+      latitude
+      longitude
+      heading
+      orders {
+        items {
+          id
+          createdAt
+          type
+          status
+          originLatitude
+          originLongitude
+          destLatitude
+          destLongitude
+          userId
+          carId
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteCar = /* GraphQL */ `
+  subscription OnDeleteCar(
+    $filter: ModelSubscriptionCarFilterInput
+    $owner: String
+  ) {
+    onDeleteCar(filter: $filter, owner: $owner) {
+      id
+      type
+      latitude
+      longitude
+      heading
+      orders {
+        items {
+          id
+          createdAt
+          type
+          status
+          originLatitude
+          originLongitude
+          destLatitude
+          destLongitude
+          userId
+          carId
+          updatedAt
+          owner
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
       owner
     }
   }
