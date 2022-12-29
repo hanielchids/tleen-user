@@ -8,12 +8,12 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-// import {useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 import {Auth} from 'aws-amplify';
 
 const CustomDrawer = props => {
-  //   const navigation = useNavigation();
+  const navigation = useNavigation();
 
   return (
     <DrawerContentScrollView {...props} style={{backgroundColor: '#164E1B'}}>
@@ -80,10 +80,7 @@ const CustomDrawer = props => {
         </Pressable>
 
         {/* Make money */}
-        <Pressable
-          onPress={() => {
-            console.warn('Tleen XTRA');
-          }}>
+        <Pressable onPress={() => navigation.navigate('Xtra')}>
           <Text style={{color: 'white', paddingVertical: 5}}>TLEEN XTRA</Text>
         </Pressable>
       </View>
