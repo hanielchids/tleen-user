@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#f2f2f2',
     fontSize: 15,
+    marginTop: 10,
     marginBottom: 10,
   },
   tooltip: {
