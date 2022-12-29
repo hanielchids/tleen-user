@@ -13,7 +13,7 @@ const HomeScreen = () => {
 
       <View style={{height: '40%'}}>
         {/* ToolTip */}
-        <Tooltip />
+        <Tooltip showToolTip={true} />
         {/* Bottom Component */}
         <HomeSearch />
       </View>
