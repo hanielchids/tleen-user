@@ -1,14 +1,16 @@
-import {View, Text} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import React, {useState} from 'react';
 import RideOptions from '../../components/RideOptions';
 import RouteMap from '../../components/RouteMap';
 
-import {useRoute} from '@react-navigation/native';
+import {useNavigation, useRoute} from '@react-navigation/native';
 
 import {API, graphqlOperation, Auth} from 'aws-amplify';
 import {createOrder} from '../../graphql/mutations';
 
 const SearchResults = () => {
+  const navigation = useNavigation();
+
   const typeState = useState(null);
 
   const route = useRoute();
@@ -51,6 +53,9 @@ const SearchResults = () => {
       );
 
       console.log('this is the new object', response);
+      Alert.alert('Success!', 'Delivery request submitted!', [
+        {text: 'Go home', onPress: () => navigation.navigate('Home')},
+      ]);
     } catch (e) {
       console.error(e);
     }
