@@ -3,6 +3,7 @@ import HomeScreen from '../screens/HomeScreen';
 import DestinationSearch from '../screens/DestinationSearch';
 import SearchResults from '../screens/SearchResults';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Messages from '../screens/Messages';
 
 const Stack = createNativeStackNavigator();
 
@@ -12,6 +13,7 @@ const HomeNavigator = () => {
       <Stack.Screen name={'Home'} component={HomeScreen} />
       <Stack.Screen name={'DestinationSearch'} component={DestinationSearch} />
       <Stack.Screen name={'SearchResults'} component={SearchResults} />
+      <Stack.Screen name={'Messages'} component={Messages} />
     </Stack.Navigator>
   );
 };

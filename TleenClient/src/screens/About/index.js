@@ -4,7 +4,7 @@ import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import styles from './styles';
-import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const articleData = [
   {
@@ -13,18 +13,18 @@ const articleData = [
     styleIcon: {
       marginRight: 4,
       padding: 3,
-      marginLeft: '70%',
+      marginLeft: '76%',
       fontWeight: '100',
     },
   },
   {
     id: '45',
-    styleIcon: {marginRight: 4, padding: 3, marginLeft: '50%'},
+    styleIcon: {marginRight: 4, padding: 3, marginLeft: '60%'},
     type: 'TLEEN careers   ',
   },
   {
     id: '23',
-    styleIcon: {marginRight: 4, padding: 3, marginLeft: '70%'},
+    styleIcon: {marginRight: 4, padding: 3, marginLeft: '76%'},
     type: 'Legal       ',
   },
 ];
@@ -36,6 +36,9 @@ const About = () => {
     <SafeAreaView>
       {/* About Heading */}
       <View style={styles.headingBox}>
+        <Pressable onPress={navigation.goBack} style={styles.backButton}>
+          <AntDesign name="left" size={22} />
+        </Pressable>
         <View style={{paddingBottom: 0}}>
           <Text style={styles.heading}>About</Text>
           <Text style={styles.subtitles}>
@@ -46,7 +49,7 @@ const About = () => {
 
       {/* List of items */}
 
-      <View style={{marginTop: 10}}>
+      <View style={{marginTop: 40}}>
         <FlatList
           data={articleData}
           keyExtractor={item => item.id}
@@ -57,9 +60,9 @@ const About = () => {
                 <Text style={styles.typeText}>{type}</Text>
               </View>
 
-              <FontAwesome
+              <AntDesign
                 style={styleIcon}
-                name="chevron-right"
+                name="right"
                 color="#A7A7A7"
                 size={22}
               />

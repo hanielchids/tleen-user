@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingBottom: 0,
     flexDirection: 'row',
-    marginBottom: 30,
+    marginBottom: 25,
   },
   backButton: {
     position: 'absolute',
@@ -22,34 +22,41 @@ const styles = StyleSheet.create({
     padding: 7,
     fontSize: 20,
     lineHeight: 22,
-    marginLeft: 50,
-    marginBottom: 15,
+    marginLeft: '5%',
+    marginBottom: 10,
   },
   subtitles: {
     paddingLeft: 0,
-    marginLeft: 5,
+    marginLeft: 10,
     textAlign: 'center',
-    marginLeft: 30,
+    marginRight: 5,
     color: '#9ca3af',
     fontSize: 13,
   },
-  lineView: {
-    backgroundColor: '#cbd5e1',
-    height: 0.5,
-  },
-  pressableRow: {
+  messageIconBox: {
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 25,
+    padding: 10,
+    paddingTop: 1,
+    paddingLeft: 0,
+    marginTop: 150,
+    height: '30%',
   },
-  firstFlex: {
-    alignContent: 'flex-start',
+  messageIcon: {
+    marginLeft: '40%',
+    marginTop: 10,
   },
-  typeText: {
-    marginLeft: 2,
-    fontWeight: '300',
-    color: '#374151',
-    fontSize: 18,
+  startChatButton: {
+    marginTop: 180,
+    borderRadius: 10,
+    paddingVertical: 15,
+    marginHorizontal: 10,
+    backgroundColor: '#0c4a6e',
+  },
+  chatButtonText: {
+    textAlign: 'center',
+    fontSize: 20,
+    color: '#fff',
   },
 });
 
