@@ -6,6 +6,7 @@ import MapViewDirections from 'react-native-maps-directions';
 import styles from './styles';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import NewOrderPopup from '../../components/NewOrderPopup';
 
 const origin = {latitude: 37.3318456, longitude: -122.0296002};
 const destination = {latitude: 37.771707, longitude: -122.4053769};
@@ -97,6 +98,8 @@ const HomeScreen = () => {
         {/* Hamburger button */}
         <Entypo name="menu" color="#4a4a4a" size={24} />
       </View>
+
+      <NewOrderPopup />
     </View>
   );
 };
