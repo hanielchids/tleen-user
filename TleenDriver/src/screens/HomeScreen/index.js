@@ -20,8 +20,10 @@ const HomeScreen = () => {
   const [newOrder, setNewOrder] = useState({
     id: '1',
     type: 'Tleen',
+
     originLatitude: -26.107567,
     originLongitude: 28.056702,
+
     destLatitude: -26.06844,
     destLongitude: 28.06376,
 
@@ -138,7 +140,11 @@ const HomeScreen = () => {
         }}>
         {order && (
           <MapViewDirections
-            origin={myPosition}
+            origin={{
+              latitude: -26.107567, // change it to origin.location.lat
+              longitude: 28.056702, // change it to origin.location.lng
+            }}
+            // origin={myPosition}
             onReady={OnDirectionFound}
             destination={getDestination()}
             apikey={GOOGLE_MAPS_APIKEY}
