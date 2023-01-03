@@ -12,6 +12,12 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Auth} from 'aws-amplify';
 
+// const isUserLogged = await Auth.currentAuthenticatedUser();
+
+// const {attributes} = isUserLogged;
+
+// console.log('user deatils are here: ', attributes);
+
 const CustomDrawer = props => {
   const navigation = useNavigation();
 
