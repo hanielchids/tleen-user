@@ -5,13 +5,6 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 const NewOrderPopup = ({newOrder, onAccept, onDecline, duration, distance}) => {
-  //   const onDecline = () => {
-  //     console.warn('Declined trip');
-  //   };
-
-  //   const onAccept = () => {
-  //     console.warn('Accepted trip');
-  //   };
   return (
     <View style={styles.root}>
       <Pressable onPress={onDecline} style={styles.declineButton}>
@@ -21,7 +14,6 @@ const NewOrderPopup = ({newOrder, onAccept, onDecline, duration, distance}) => {
       <Pressable onPress={onAccept} style={styles.popupContainer}>
         <View style={styles.row}>
           <Text style={styles.tleenType}>{newOrder.type}</Text>
-          {/* <Image source={{}} /> */}
 
           <View style={styles.userBg}>
             <FontAwesome name="user" color="white" size={30} />

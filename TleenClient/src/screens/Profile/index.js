@@ -12,13 +12,18 @@ const Profile = () => {
 
   const [active, setActive] = useState(true);
 
+  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
+
   useEffect(() => {
     const getUserInfo = async () => {
       try {
         const user = await Auth.currentSession();
         setUser(user.accessToken.payload.username);
         setEmail(user.idToken.payload.email);
-        setNumber(user.idToken.payload.email);
+
+        console.log('user stuff is: ', user.accessToken.payload.username);
+        console.log('user email is: ', user.idToken.payload.email);
       } catch (err) {
         console.log(err);
       }
@@ -27,8 +32,20 @@ const Profile = () => {
     getUserInfo();
   }, []);
 
+  //   Graphql delete user
+  //   https://docs.amplify.aws/lib/auth/delete_user/q/platform/react-native/
+
+  async function deleteUser() {
+    try {
+      const result = await Auth.deleteUser();
+      console.log(result);
+    } catch (error) {
+      console.log('Error deleting user', error);
+    }
+  }
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{backgroundColor: '#fff'}}>
       {/* Heading */}
       <View style={styles.headingBox}>
         <Pressable onPress={navigation.goBack} style={styles.backButton}>
@@ -78,19 +95,23 @@ const Profile = () => {
 
       {active ? (
         <View style={{marginTop: 20, marginHorizontal: 20}}>
-          <Text style={styles.formLabel}>Full name</Text>
+          <Text style={styles.formLabel}>Username</Text>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={styles.placeholderText}>First name</Text>
+            {/* <Text style={styles.placeholderText}>First name</Text>
             <Text style={[styles.placeholderText, {marginLeft: 10}]}>
               Last name
+            </Text> */}
+
+            <Text style={[styles.placeholderText, {width: '100%'}]}>
+              {user}
             </Text>
           </View>
 
           <Text style={styles.formLabel}>Email address</Text>
-          <Text style={[styles.placeholderText, {width: '100%'}]}>email</Text>
+          <Text style={[styles.placeholderText, {width: '100%'}]}>{email}</Text>
 
-          <Text style={styles.formLabel}>Phone number</Text>
-          <Text style={[styles.placeholderText, {width: '100%'}]}>number</Text>
+          {/* <Text style={styles.formLabel}>Phone number</Text>
+          <Text style={[styles.placeholderText, {width: '100%'}]}>number</Text> */}
 
           <Pressable
             style={styles.button}
@@ -98,6 +119,14 @@ const Profile = () => {
               Auth.signOut();
             }}>
             <Text style={styles.buttonText}>Log out</Text>
+          </Pressable>
+
+          <Pressable
+            style={[styles.button, {backgroundColor: '#e60000', marginTop: 20}]}
+            onPress={() => {
+              deleteUser();
+            }}>
+            <Text style={styles.buttonText}>Delete Account</Text>
           </Pressable>
         </View>
       ) : (
@@ -108,6 +137,13 @@ const Profile = () => {
               Auth.signOut();
             }}>
             <Text style={styles.buttonText}>Log out</Text>
+          </Pressable>
+          <Pressable
+            style={[styles.button, {backgroundColor: '#e60000', marginTop: 20}]}
+            onPress={() => {
+              deleteUser();
+            }}>
+            <Text style={styles.buttonText}>Delete Account</Text>
           </Pressable>
         </View>
       )}
