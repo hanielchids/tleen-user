@@ -5,6 +5,7 @@ import SearchResults from '../screens/SearchResults';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Messages from '../screens/Messages';
 import Xtra from '../screens/Xtra';
+import Profile from '../screens/Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ const HomeNavigator = () => {
       <Stack.Screen name={'SearchResults'} component={SearchResults} />
       <Stack.Screen name={'Messages'} component={Messages} />
       <Stack.Screen name={'Xtra'} component={Xtra} />
+      <Stack.Screen name={'Profile'} component={Profile} />
     </Stack.Navigator>
   );
 };
