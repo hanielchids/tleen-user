@@ -1,5 +1,5 @@
 import {View, Text, Image, Pressable} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   DrawerContentScrollView,
   DrawerItem,
@@ -12,13 +12,24 @@ import {useNavigation} from '@react-navigation/native';
 
 import {Auth} from 'aws-amplify';
 
-// const isUserLogged = await Auth.currentAuthenticatedUser();
-
-// const {attributes} = isUserLogged;
-
-// console.log('user deatils are here: ', attributes);
-
 const CustomDrawer = props => {
+  const [user, setUser] = useState('');
+  const [email, setEmail] = useState('');
+
+  useEffect(() => {
+    const getName = async () => {
+      try {
+        const user = await Auth.currentSession();
+        setUser(user.accessToken.payload.username);
+        setEmail(user.idToken.payload.email);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getName();
+  }, []);
+
   const navigation = useNavigation();
 
   return (
@@ -41,16 +52,15 @@ const CustomDrawer = props => {
                 marginRight: 10,
               }}></View>
             <View>
-              <Text style={{color: 'white', fontSize: 24}}>Username</Text>
-              <Text style={{color: 'lightgrey'}}>5.00</Text>
+              <Text style={{color: 'white', fontSize: 24}}>{user}</Text>
+              <Text style={{color: 'lightgrey'}}>{email}</Text>
             </View>
           </View>
 
           <View style={{display: 'flex', justifyContent: 'flex-end'}}>
             <Pressable
               style={{bottom: 30}}
-              //   onPress={() => navigation.closeDrawer()}
-              onPress={console.log('hello')}>
+              onPress={() => props.navigation.closeDrawer()}>
               <AntDesign name="closecircleo" color="white" size={30} />
             </Pressable>
           </View>
@@ -65,10 +75,7 @@ const CustomDrawer = props => {
             paddingVertical: 5,
             marginVertical: 10,
           }}>
-          <Pressable
-            onPress={() => {
-              console.warn('Tleen XTRA');
-            }}>
+          <Pressable onPress={() => navigation.navigate('Profile')}>
             <Text style={{color: '#dddddd', paddingVertical: 5}}>
               View Profile
             </Text>
