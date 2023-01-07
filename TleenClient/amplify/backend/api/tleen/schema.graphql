@@ -10,6 +10,7 @@ type User
   username: String!
   email: String
 
+  car: Car @hasOne(fields: ["id"])
   orders: [Order] @hasMany(fields: ["id"])
 }
 
@@ -19,7 +20,10 @@ type Car @model @auth(rules: [{allow: public}, {allow: owner}]) {
   latitude: Float
   longitude: Float
   heading: Float
+  isActive: Boolean
 
+  userId: ID!
+  user: User @belongsTo(fields: ["userId"])
   orders: [Order] @hasMany(fields: ["id"])
 }
 
