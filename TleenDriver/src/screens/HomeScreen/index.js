@@ -9,11 +9,16 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import NewOrderPopup from '../../components/NewOrderPopup';
 
+import {Auth, API, graphqlOperation} from 'aws-amplify';
+import {getCar} from '../../graphql/queries';
+import {updateCar} from '../../graphql/mutations';
+
 const origin = {latitude: -26.107567, longitude: 28.056702};
 const destination = {latitude: -26.06844, longitude: 28.06376};
 const GOOGLE_MAPS_APIKEY = 'AIzaSyAz48wFGKcLYPQIhaLTX_Vh8FVSzUUBYHE';
 
 const HomeScreen = () => {
+  const [car, setCar] = useState(null);
   const [isOnline, setIsOnline] = useState(false);
   const [myPosition, setMyPosition] = useState(null);
   const [order, setOrder] = useState(null);
@@ -33,8 +38,40 @@ const HomeScreen = () => {
     },
   });
 
-  const onGoPress = () => {
+  const fetchCar = async () => {
+    try {
+      const userData = await Auth.currentAuthenticatedUser();
+      const carData = await API.graphql(
+        graphqlOperation(getCar, {id: userData.attributes.sub}),
+      );
+      setCar(carData.data.getCar);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  useEffect(() => {
+    fetchCar();
+  }, []);
+
+  const onGoPress = async () => {
     setIsOnline(!isOnline);
+    // Update the car and set it to active
+    try {
+      const userData = await Auth.currentAuthenticatedUser();
+      const input = {
+        id: userData.attributes.sub,
+        isActive: !car.isActive,
+      };
+
+      const updatedCarData = await API.graphql(
+        graphqlOperation(updateCar, {input}),
+      );
+
+      setCar(updatedCarData.data.updateCar);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const onDecline = () => {
@@ -174,7 +211,7 @@ const HomeScreen = () => {
         </View>
       );
     }
-    if (isOnline) {
+    if (car?.isActive) {
       return (
         <Text style={[styles.bottomText, {color: 'green'}]}>You're online</Text>
       );
@@ -245,7 +282,7 @@ const HomeScreen = () => {
         <Entypo name="menu" size={24} color="#4a4a4a" />
       </Pressable>
 
-      {isOnline ? (
+      {car?.isActive ? (
         <Pressable
           onPress={() => onGoPress()}
           style={[styles.goButton, {backgroundColor: 'gray', fontSize: 24}]}>
