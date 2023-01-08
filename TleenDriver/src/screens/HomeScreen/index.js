@@ -10,8 +10,8 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import NewOrderPopup from '../../components/NewOrderPopup';
 
 import {Auth, API, graphqlOperation} from 'aws-amplify';
-import {getCar} from '../../graphql/queries';
-import {updateCar} from '../../graphql/mutations';
+import {getCar, listOrders} from '../../graphql/queries';
+import {updateCar, updateOrder} from '../../graphql/mutations';
 
 const origin = {latitude: -26.107567, longitude: 28.056702};
 const destination = {latitude: -26.06844, longitude: 28.06376};
@@ -19,24 +19,9 @@ const GOOGLE_MAPS_APIKEY = 'AIzaSyAz48wFGKcLYPQIhaLTX_Vh8FVSzUUBYHE';
 
 const HomeScreen = () => {
   const [car, setCar] = useState(null);
-  const [isOnline, setIsOnline] = useState(false);
   const [myPosition, setMyPosition] = useState(null);
   const [order, setOrder] = useState(null);
-  const [newOrder, setNewOrder] = useState({
-    id: '1',
-    type: 'TLEEN',
-
-    originLatitude: -26.107567,
-    originLongitude: 28.056702,
-
-    destLatitude: -26.06844,
-    destLongitude: 28.06376,
-
-    user: {
-      rating: 4.8,
-      name: 'Tebogo',
-    },
-  });
+  const [newOrders, setNewOrders] = useState([]);
 
   const fetchCar = async () => {
     try {
@@ -50,12 +35,23 @@ const HomeScreen = () => {
     }
   };
 
+  const fetchOrders = async () => {
+    try {
+      const ordersData = await API.graphql(
+        graphqlOperation(listOrders, {filter: {status: {eq: 'NEW'}}}),
+      );
+      setNewOrders(ordersData.data.listOrders.items);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     fetchCar();
+    fetchOrders();
   }, []);
 
   const onGoPress = async () => {
-    setIsOnline(!isOnline);
     // Update the car and set it to active
     try {
       const userData = await Auth.currentAuthenticatedUser();
@@ -75,16 +71,32 @@ const HomeScreen = () => {
   };
 
   const onDecline = () => {
-    setNewOrder(null);
+    setNewOrders(newOrders.slice(1));
   };
 
   const onAccept = newOrder => {
     setOrder(newOrder);
-    setNewOrder(null);
+    setNewOrders(newOrders.slice(1));
   };
 
-  const onUserLocationChange = event => {
-    setMyPosition(event.nativeEvent.coordinate);
+  const onUserLocationChange = async event => {
+    const {latitude, longitude, heading} = event.nativeEvent.coordinate;
+    // Update the car and set it to active
+    try {
+      const userData = await Auth.currentAuthenticatedUser();
+      const input = {
+        id: userData.attributes.sub,
+        latitude,
+        longitude,
+        heading,
+      };
+      const updatedCarData = await API.graphql(
+        graphqlOperation(updateCar, {input}),
+      );
+      setCar(updatedCarData.data.updateCar);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   const OnDirectionFound = event => {
@@ -145,7 +157,7 @@ const HomeScreen = () => {
               COMPLETE {order.type}
             </Text>
           </View>
-          <Text style={styles.bottomText}>{order.user.name}</Text>
+          <Text style={styles.bottomText}>{order.user.username}</Text>
         </View>
       );
     }
@@ -206,7 +218,7 @@ const HomeScreen = () => {
             <Text>{order.distance ? order.distance.toFixed(2) : '?'} km</Text>
           </View>
           <Text style={[styles.bottomText, {color: 'green'}]}>
-            Picking up for {order.user.name}
+            Picking up for {order.user.username}
           </Text>
         </View>
       );
@@ -240,8 +252,11 @@ const HomeScreen = () => {
         }}>
         {order && (
           <MapViewDirections
-            // origin={origin}
             origin={myPosition}
+            // origin={{
+            //   latitude: car?.latitude,
+            //   longitude: car?.longitude,
+            // }}
             onReady={OnDirectionFound}
             // destination={getDestination()} // use this on real device
             destination={{
@@ -318,11 +333,11 @@ const HomeScreen = () => {
         <Entypo name="menu" color="#4a4a4a" size={24} />
       </View>
 
-      {newOrder && (
+      {newOrders.length > 0 && !order && (
         <NewOrderPopup
-          newOrder={newOrder}
+          newOrder={newOrders[0]}
           onDecline={onDecline}
-          onAccept={() => onAccept(newOrder)}
+          onAccept={() => onAccept(newOrders[0])}
           duration={3}
           distance={2}
         />

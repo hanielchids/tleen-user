@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     color: 'lightgrey',
     fontSize: 20,
     marginHorizontal: 10,
+    width: 120,
   },
   row: {
     flexDirection: 'row',
