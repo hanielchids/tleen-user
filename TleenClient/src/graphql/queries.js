@@ -196,6 +196,39 @@ export const listOrders = /* GraphQL */ `
     }
   }
 `;
+export const getCards = /* GraphQL */ `
+  query GetCards($id: ID!) {
+    getCards(id: $id) {
+      id
+      cardName
+      cardNumber
+      cardColor
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const listCards = /* GraphQL */ `
+  query ListCards(
+    $filter: ModelCardsFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCards(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        cardName
+        cardNumber
+        cardColor
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getCar = /* GraphQL */ `
   query GetCar($id: ID!) {
     getCar(id: $id) {

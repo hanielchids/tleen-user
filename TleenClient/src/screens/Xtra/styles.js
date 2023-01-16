@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   activeText: {
-    fontSize: 32,
+    fontSize: 28,
     marginLeft: 10,
   },
   activeCardContainer: {
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   activeCardText: {
-    fontSize: 22,
+    fontSize: 20,
     marginLeft: 15,
     width: 180,
   },
@@ -119,6 +119,74 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+  },
+  formLabel: {
+    marginBottom: 5,
+    marginTop: 30,
+    fontWeight: '500',
+  },
+  placeholderText: {
+    padding: 12,
+    borderWidth: 0.5,
+    borderColor: 'gray',
+    borderRadius: 5,
+    width: '49%',
+  },
+  button: {
+    backgroundColor: '#2FA94E',
+    marginTop: 50,
+    padding: 15,
+    alignItems: 'center',
+    borderRadius: 5,
+    width: '100%',
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  tabStyle: {
+    padding: 10,
+    borderRadius: 5,
+    width: '50%',
+    alignItems: 'center',
+  },
+  headingBox: {
+    padding: 5,
+    paddingBottom: 0,
+    marginBottom: 25,
+  },
+  rewardsContainer: {
+    paddingLeft: 0,
+    marginTop: 20,
+  },
+  rewardsBox: {
+    paddingVertical: 5,
+    paddingRight: 0,
+    paddingLeft: 0,
+    backgroundColor: '#fff',
+    borderColor: '#d1d5db',
+    borderWidth: 1,
+    height: '42%',
+    width: '100%',
+    borderRadius: 5,
+  },
+  rewardsPanelText: {
+    fontWeight: '500',
+    paddingLeft: 0,
+    marginLeft: 10,
+    marginTop: 8,
+    textAlign: 'left',
+    fontSize: 18,
+  },
+  rewardsSubText: {
+    paddingLeft: 0,
+    marginLeft: 10,
+    marginTop: 5,
+    textAlign: 'left',
+    color: '#9ca3af',
+  },
+  learnMoreText: {
+    color: '#fb923c',
   },
 });
 

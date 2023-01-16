@@ -57,3 +57,21 @@ type Order
   carId: ID!
   car: Car @belongsTo(fields: ["carId"])
 }
+
+type Cards
+  @model
+  @auth(
+    rules: [
+      {
+        allow: owner
+        operations: [create, read, update, delete]
+        identityClaim: "username"
+      }
+      {allow: private, operations: [read, update, delete]}
+    ]
+  ) {
+  id: ID!
+  cardName: String!
+  cardNumber: Float
+  cardColor: String
+}
