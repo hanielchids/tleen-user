@@ -367,6 +367,54 @@ export const onDeleteOrder = /* GraphQL */ `
     }
   }
 `;
+export const onCreateCards = /* GraphQL */ `
+  subscription OnCreateCards(
+    $filter: ModelSubscriptionCardsFilterInput
+    $owner: String
+  ) {
+    onCreateCards(filter: $filter, owner: $owner) {
+      id
+      cardName
+      cardNumber
+      cardColor
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onUpdateCards = /* GraphQL */ `
+  subscription OnUpdateCards(
+    $filter: ModelSubscriptionCardsFilterInput
+    $owner: String
+  ) {
+    onUpdateCards(filter: $filter, owner: $owner) {
+      id
+      cardName
+      cardNumber
+      cardColor
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const onDeleteCards = /* GraphQL */ `
+  subscription OnDeleteCards(
+    $filter: ModelSubscriptionCardsFilterInput
+    $owner: String
+  ) {
+    onDeleteCards(filter: $filter, owner: $owner) {
+      id
+      cardName
+      cardNumber
+      cardColor
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
 export const onCreateCar = /* GraphQL */ `
   subscription OnCreateCar(
     $filter: ModelSubscriptionCarFilterInput

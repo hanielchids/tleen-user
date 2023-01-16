@@ -367,6 +367,54 @@ export const deleteOrder = /* GraphQL */ `
     }
   }
 `;
+export const createCards = /* GraphQL */ `
+  mutation CreateCards(
+    $input: CreateCardsInput!
+    $condition: ModelCardsConditionInput
+  ) {
+    createCards(input: $input, condition: $condition) {
+      id
+      cardName
+      cardNumber
+      cardColor
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const updateCards = /* GraphQL */ `
+  mutation UpdateCards(
+    $input: UpdateCardsInput!
+    $condition: ModelCardsConditionInput
+  ) {
+    updateCards(input: $input, condition: $condition) {
+      id
+      cardName
+      cardNumber
+      cardColor
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
+export const deleteCards = /* GraphQL */ `
+  mutation DeleteCards(
+    $input: DeleteCardsInput!
+    $condition: ModelCardsConditionInput
+  ) {
+    deleteCards(input: $input, condition: $condition) {
+      id
+      cardName
+      cardNumber
+      cardColor
+      createdAt
+      updatedAt
+      owner
+    }
+  }
+`;
 export const createCar = /* GraphQL */ `
   mutation CreateCar(
     $input: CreateCarInput!
