@@ -50,7 +50,12 @@ const CustomDrawer = props => {
                 height: 80,
                 borderRadius: 50,
                 marginRight: 10,
-              }}></View>
+              }}>
+              <Text
+                style={{color: 'green', top: 18, marginLeft: 28, fontSize: 42}}>
+                {user.charAt(0).toUpperCase()}
+              </Text>
+            </View>
             <View>
               <Text style={{color: 'white', fontSize: 24}}>{user}</Text>
               <Text style={{color: 'lightgrey'}}>{email}</Text>

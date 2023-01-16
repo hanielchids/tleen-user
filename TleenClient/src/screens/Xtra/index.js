@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Text,
   View,
@@ -11,6 +11,9 @@ import {
 import Popup from './Modal';
 
 import {useNavigation} from '@react-navigation/native';
+// Graphql
+import {API, graphqlOperation} from 'aws-amplify';
+import {listCards} from '../../graphql/queries';
 
 // logo imports
 import absolutepets from '../../assets/png/absolutepets.png';
@@ -20,9 +23,8 @@ import cottonon from '../../assets/png/cottonon.png';
 import dischem from '../../assets/png/dischem.png';
 import picknpay from '../../assets/png/picknpay.png';
 import funcompany from '../../assets/png/thefuncompany.png';
-import woolworths from '../../assets/png/woolworths.png';
+import Woolworths from '../../assets/png/woolworths.png';
 import exclusivebooks from '../../assets/png/exclusivebooks.png';
-import barcode from '../../assets/png/barcode.png';
 
 import styles from './styles';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -33,81 +35,72 @@ const DATA = [
     title: 'Pick n Pay',
     cardType: 'Smart Shopper',
     logo: picknpay,
-    barcode: barcode,
     cardNumber: 213213131231,
-    bgColor: '#fff',
+    bgColor: '#fff', //white
   },
   {
     id: 2,
     title: 'Woolworths',
     cardType: 'WRewards',
-    logo: woolworths,
-    barcode: barcode,
+    logo: Woolworths,
     cardNumber: 213432421342,
-    bgColor: '#22c55e',
+    bgColor: '#22c55e', //light-green
   },
   {
     id: 3,
     title: 'Checkers',
     cardType: 'XTRA Savings',
     logo: checkers,
-    barcode: barcode,
     cardNumber: 3224224223,
-    bgColor: '#fdba74',
+    bgColor: '#fdba74', //orange
   },
   {
     id: 4,
     title: 'Dischem',
     cardType: 'Benefit Card',
     logo: dischem,
-    barcode: barcode,
     cardNumber: 234242424,
-    bgColor: '#059669',
+    bgColor: '#059669', // dark-green
   },
   {
     id: 5,
     title: 'Clicks',
     cardType: 'ClubCard',
     logo: clicks,
-    barcode: barcode,
     cardNumber: 23424245324,
-    bgColor: '#fff',
+    bgColor: '#fff', //white
   },
   {
     id: 6,
     title: 'Cotton On',
     cardType: 'Perks',
     logo: cottonon,
-    barcode: barcode,
     cardNumber: 234245324532,
-    bgColor: '#fff',
+    bgColor: '#fff', //white
   },
   {
     id: 7,
     title: 'Absolute Pets',
     cardType: 'Rewards Card',
     logo: absolutepets,
-    barcode: barcode,
     cardNumber: 32424532453,
-    bgColor: '#0284c7',
+    bgColor: '#0284c7', //blue
   },
   {
     id: 8,
     title: 'The fun company',
     cardType: 'Rewards card',
     logo: funcompany,
-    barcode: barcode,
     cardNumber: 3242453243,
-    bgColor: '#fff',
+    bgColor: '#fff', //white
   },
   {
     id: 9,
     title: 'Exclusive Books',
     cardType: 'Fanaties card',
     logo: exclusivebooks,
-    barcode: barcode,
     cardNumber: 23453242234,
-    bgColor: '#000',
+    bgColor: '#000', //black
   },
 ];
 
@@ -116,12 +109,12 @@ const Item = ({logo}) => (
     <View>
       <Image
         style={{
-          width: logo === exclusivebooks || absolutepets ? 150 : 120,
-          height: logo === exclusivebooks || absolutepets ? 100 : 60,
+          width: 120,
+          height: 60,
           resizeMode: 'contain',
-          marginTop: logo === exclusivebooks || absolutepets ? -5 : 10,
+          marginTop: 10,
           top: 10,
-          marginLeft: logo === exclusivebooks || absolutepets ? -3 : 5,
+          marginLeft: 5,
         }}
         source={logo}
       />
@@ -130,6 +123,24 @@ const Item = ({logo}) => (
 );
 
 export default function Xtra() {
+  const [cards, setCards] = useState([]);
+
+  const [val1, setVal1] = useState([]);
+
+  const fetchCards = async () => {
+    try {
+      const cardData = await API.graphql(graphqlOperation(listCards));
+
+      const cards = cardData.data.listCards.items;
+      console.log('cards showing here are', cards);
+      setCards(cards);
+
+      setVal1(cards[0].cardColor);
+    } catch (e) {
+      console.log('error here is: ', e);
+    }
+  };
+
   const navigation = useNavigation();
 
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -144,48 +155,160 @@ export default function Xtra() {
 
   const renderItem = ({item}) => (
     <TouchableOpacity
-      //   style={tw`p-2 pl-6 h-30 pb-8 pt-4 rounded-md shadow-lg m-2 w-48 ${
-      //     item.id && item.bgColor
-      //   }`}
-      style={[styles.renderButton, {backgroundColor: item.id && item.bgColor}]}
+      style={[
+        styles.renderButton,
+        {backgroundColor: item.id && item.cardColor},
+      ]}
       onPress={() => onPress(item)}>
-      <Item logo={item.logo} />
+      {item.cardName === 'Woolworths' && (
+        <Image
+          style={{
+            width: 120,
+            height: 80,
+            resizeMode: 'contain',
+            marginTop: 10,
+            top: 10,
+            marginLeft: 5,
+          }}
+          source={Woolworths}
+        />
+      )}
+      {item.cardName === `Pick 'n' Pay` && (
+        <Image
+          style={{
+            width: 120,
+            height: 80,
+            resizeMode: 'contain',
+            marginTop: 10,
+            top: 10,
+            marginLeft: 5,
+          }}
+          source={picknpay}
+        />
+      )}
+
+      {item.cardName === 'Checkers' && (
+        <Image
+          style={{
+            width: 120,
+            height: 80,
+            resizeMode: 'contain',
+            marginTop: 10,
+            top: 10,
+            marginLeft: 5,
+          }}
+          source={checkers}
+        />
+      )}
+
+      {item.cardName === 'Clicks' && (
+        <Image
+          style={{
+            width: 120,
+            height: 80,
+            resizeMode: 'contain',
+            marginTop: 10,
+            top: 10,
+            marginLeft: 5,
+          }}
+          source={clicks}
+        />
+      )}
+
+      {item.cardName === 'Dis-chem' && (
+        <Image
+          style={{
+            width: 120,
+            height: 80,
+            resizeMode: 'contain',
+            marginTop: 10,
+            top: 10,
+            marginLeft: 5,
+          }}
+          source={dischem}
+        />
+      )}
+
+      {item.cardName === 'Cotton:on' && (
+        <Image
+          style={{
+            width: 120,
+            height: 80,
+            resizeMode: 'contain',
+            marginTop: 10,
+            top: 10,
+            marginLeft: 5,
+          }}
+          source={cottonon}
+        />
+      )}
+
+      {item.cardName === 'Absolute Pets' && (
+        <Image
+          style={{
+            width: 120,
+            height: 80,
+            resizeMode: 'contain',
+            marginTop: 10,
+            top: 10,
+            marginLeft: 5,
+          }}
+          source={absolutepets}
+        />
+      )}
+
+      {item.cardName === 'The fun company' && (
+        <Image
+          style={{
+            width: 120,
+            height: 80,
+            resizeMode: 'contain',
+            marginTop: 10,
+            top: 10,
+            marginLeft: 5,
+          }}
+          source={funcompany}
+        />
+      )}
+
+      {item.cardName === 'Exclusive books' && (
+        <Image
+          style={{
+            width: 120,
+            height: 80,
+            resizeMode: 'contain',
+            marginTop: 10,
+            top: 10,
+            marginLeft: 5,
+          }}
+          source={exclusivebooks}
+        />
+      )}
     </TouchableOpacity>
   );
+
+  useEffect(() => {
+    fetchCards();
+  }, []);
 
   return (
     <SafeAreaView>
       <View>
-        <View
-          // style={tw`p-5 pb-0 -mt-10 `}
-          style={styles.cardBox}>
+        <View style={styles.cardBox}>
           <View style={{paddingBottom: 0}}>
             <TouchableOpacity
               onPress={navigation.goBack}
-              //   style={tw`absolute top-3 z-50 -left-5 mt-1 p-3 rounded-full`}
               style={styles.backButton}>
               <AntDesign name="left" size={22} />
             </TouchableOpacity>
 
-            <Text
-              //   style={tw`text-center font-bold text-sky-900 pt-8 pb-0 text-xl`}
-              style={styles.xtraText}>
-              TLEEN EXtra
-            </Text>
+            <Text style={styles.xtraText}>TLEEN EXtra</Text>
           </View>
 
           <Pressable
-            //   style={tw`flex-row items-center p-5 pl-0`}
-            style={styles.addCard}>
-            {/* <Icon
-              style={tw`mr-4 p-3 pl-0`}
-              style={tw`mr-4 p-3 pl-0`}
-              name="add"
-              type="materialicons"
-              color="#0c4a6e"
-              size={30}
-            /> */}
-            <Text>+</Text>
+            style={styles.addCard}
+            onPress={() => navigation.navigate('AddCard')}>
+            <Text style={{fontSize: 30}}>+ {''}</Text>
             <View>
               <Text style={styles.addCardText}>Add card</Text>
               <Text style={styles.addCardSubtext}>
@@ -195,8 +318,16 @@ export default function Xtra() {
           </Pressable>
         </View>
         <View style={{paddingLeft: 0, marginTop: 4}}>
+          <Text
+            style={[
+              styles.addCardSubtext,
+              {paddingLeft: 15, paddingBottom: 20, color: '#FF6600'},
+            ]}>
+            Tap card to review more info
+          </Text>
           <FlatList
-            data={DATA}
+            // data={DATA}
+            data={cards}
             renderItem={renderItem}
             keyExtractor={item => item.id}
             numColumns={numColumns}
@@ -211,10 +342,3 @@ export default function Xtra() {
     </SafeAreaView>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     marginTop: 54,
-//   },
-// });

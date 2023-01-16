@@ -10,6 +10,18 @@ import {
   Pressable,
 } from 'react-native';
 import styles from './styles';
+import barcode from '../../assets/png/barcode.png';
+
+// logo imports
+import absolutepets from '../../assets/png/absolutepets.png';
+import checkers from '../../assets/png/checkers.png';
+import clicks from '../../assets/png/clicks.png';
+import cottonon from '../../assets/png/cottonon.png';
+import dischem from '../../assets/png/dischem.png';
+import picknpay from '../../assets/png/picknpay.png';
+import funcompany from '../../assets/png/thefuncompany.png';
+import Woolworths from '../../assets/png/woolworths.png';
+import exclusivebooks from '../../assets/png/exclusivebooks.png';
 
 export default function Popup({modalVisible, setModalVisible, activeItem}) {
   return (
@@ -24,35 +36,131 @@ export default function Popup({modalVisible, setModalVisible, activeItem}) {
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
             <View
-              // style={tw`p-2 pl-6 h-50 pb-8 pt-4 rounded-md shadow-xl w-75 ${
-              //   activeItem?.id && activeItem?.bgColor
-              // }`}
               style={[
                 styles.viewItem,
-                {backgroundColor: activeItem?.id && activeItem?.bgColor},
+                {backgroundColor: activeItem?.cardColor},
               ]}>
               <View style={{alignItems: 'center'}}>
-                <Image
-                  style={{
-                    width: 220,
-                    height: 80,
-                    resizeMode: 'contain',
-                    marginTop: 7,
-                    marginLeft: 5,
-                  }}
-                  source={activeItem?.logo}
-                />
-                <Text
-                  // style={tw`text-2xl tracking-widest ml-8`}
-                  style={styles.activeText}>
-                  {activeItem?.cardNumber}
-                </Text>
+                {activeItem?.cardName === 'Woolworths' && (
+                  <Image
+                    style={{
+                      width: 220,
+                      height: 100,
+                      resizeMode: 'contain',
+                      marginTop: 12,
+                      marginLeft: 5,
+                    }}
+                    source={Woolworths}
+                  />
+                )}
+                {activeItem?.cardName === `Pick 'n' Pay` && (
+                  <Image
+                    style={{
+                      width: 220,
+                      height: 100,
+                      resizeMode: 'contain',
+                      marginTop: 12,
+                      marginLeft: 5,
+                    }}
+                    source={picknpay}
+                  />
+                )}
+
+                {activeItem?.cardName === 'Checkers' && (
+                  <Image
+                    style={{
+                      width: 220,
+                      height: 100,
+                      resizeMode: 'contain',
+                      marginTop: 12,
+                      marginLeft: 5,
+                    }}
+                    source={checkers}
+                  />
+                )}
+
+                {activeItem?.cardName === 'Clicks' && (
+                  <Image
+                    style={{
+                      width: 220,
+                      height: 100,
+                      resizeMode: 'contain',
+                      marginTop: 12,
+                      marginLeft: 5,
+                    }}
+                    source={clicks}
+                  />
+                )}
+
+                {activeItem?.cardName === 'Dis-chem' && (
+                  <Image
+                    style={{
+                      width: 220,
+                      height: 100,
+                      resizeMode: 'contain',
+                      marginTop: 12,
+                      marginLeft: 5,
+                    }}
+                    source={dischem}
+                  />
+                )}
+
+                {activeItem?.cardName === 'Cotton:on' && (
+                  <Image
+                    style={{
+                      width: 220,
+                      height: 100,
+                      resizeMode: 'contain',
+                      marginTop: 12,
+                      marginLeft: 5,
+                    }}
+                    source={cottonon}
+                  />
+                )}
+
+                {activeItem?.cardName === 'Absolute Pets' && (
+                  <Image
+                    style={{
+                      width: 220,
+                      height: 100,
+                      resizeMode: 'contain',
+                      marginTop: 12,
+                      marginLeft: 5,
+                    }}
+                    source={absolutepets}
+                  />
+                )}
+
+                {activeItem?.cardName === 'The fun company' && (
+                  <Image
+                    style={{
+                      width: 220,
+                      height: 100,
+                      resizeMode: 'contain',
+                      marginTop: 12,
+                      marginLeft: 5,
+                    }}
+                    source={funcompany}
+                  />
+                )}
+
+                {activeItem?.cardName === 'Exclusive books' && (
+                  <Image
+                    style={{
+                      width: 220,
+                      height: 100,
+                      resizeMode: 'contain',
+                      marginTop: 12,
+                      marginLeft: 5,
+                    }}
+                    source={exclusivebooks}
+                  />
+                )}
+                <Text style={styles.activeText}>{activeItem?.cardNumber}</Text>
               </View>
             </View>
 
-            <View
-              // style={tw`p-2 pl-6 h-50 pb-8 pt-4 mt-5 rounded-md shadow-xl w-75 bg-white`}
-              style={styles.activeCardContainer}>
+            <View style={styles.activeCardContainer}>
               <View style={{flexDirection: 'column'}}>
                 <Image
                   style={{
@@ -61,22 +169,16 @@ export default function Popup({modalVisible, setModalVisible, activeItem}) {
                     resizeMode: 'stretch',
                     marginTop: 0,
                   }}
-                  source={activeItem?.barcode}
+                  source={barcode}
                 />
-                {/* <TouchableOpacity onPress={() => copyToClipboard()}> */}
-                <Text
-                  //  style={tw`text-2xl tracking-widest ml-6`}
-                  style={styles.activeCardText}>
+                <Text style={styles.activeCardText}>
                   {activeItem?.cardNumber}
                 </Text>
-                {/* </TouchableOpacity> */}
               </View>
             </View>
 
-            <View
-              // style={tw`mt-5 -ml-20 mb-10`}
-              style={{marginTop: 0, marginLeft: 15, marginBottom: 10}}>
-              <Text>{activeItem?.name}Reward Card</Text>
+            <View style={{marginTop: 0, marginLeft: 15, marginBottom: 10}}>
+              <Text>{activeItem?.cardName} Reward Card</Text>
               <Text style={{fontWeight: '200'}}>
                 Click card number to copy code
               </Text>
@@ -90,9 +192,7 @@ export default function Popup({modalVisible, setModalVisible, activeItem}) {
               }}
               onPress={() => {
                 setModalVisible(!modalVisible);
-              }}
-              // onPress={console.log('clicked the ting: ', activeItem.name)}
-            >
+              }}>
               <Text style={styles.textStyle}>Close</Text>
             </TouchableHighlight>
           </View>
